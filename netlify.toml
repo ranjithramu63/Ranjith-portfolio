@@ -1,0 +1,4 @@
+[build]
+  base = "ranjith portfolio"
+  command = "python3 -m pip install -r requirements.txt && make all"
+  publish = "public"
