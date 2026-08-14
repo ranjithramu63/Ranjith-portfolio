@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranjith Ramu | Data Analyst & Data Scientist</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dark-theme">
+    <!-- Background animations -->
+    <div class="bg-blur blob-1"></div>
+    <div class="bg-blur blob-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="{{ url_for('index') }}" class="logo">
+                <img src="{{ url_for('static', filename='RANJITH.R.jpg') }}" alt="RR Logo" id="logo-img"
+                    onerror="this.onerror=null; this.src='https://via.placeholder.com/50x50/1e293b/ffffff?text=RR'">
+                <span>Ranjith<span class="highlight">.</span></span>
+            </a>
+
+            <div class="menu-btn" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="{{ url_for('index') }}"
+                        class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('about') }}"
+                        class="{% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="{{ url_for('skills') }}"
+                        class="{% if request.endpoint == 'skills' %}active{% endif %}">Skills</a></li>
+                <li><a href="{{ url_for('projects') }}"
+                        class="{% if request.endpoint == 'projects' %}active{% endif %}">Projects</a></li>
+                <li><a href="{{ url_for('certifications') }}"
+                        class="{% if request.endpoint == 'certifications' %}active{% endif %}">Certifications</a></li>
+                <li><a href="{{ url_for('contact') }}"
+                        class="nav-contact {% if request.endpoint == 'contact' %}active{% endif %}">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-transition">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Ranjith Ramu. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://x.com/Ranjith37045928" target="_blank" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="https://github.com/ranjithramu63" target="_blank" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ranjith-r-6025a6216" target="_blank" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

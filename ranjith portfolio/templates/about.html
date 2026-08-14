@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="about-page container">
+    <div class="section-header text-center">
+        <h2>About <span class="highlight">Me</span></h2>
+        <div class="underline"></div>
+    </div>
+
+    <div class="about-content">
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='RANJITH.R.jpg') }}" alt="Ranjith Ramu Profile"
+                onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500/1e293b/3b82f6?text=RR'">
+            <div class="img-border"></div>
+        </div>
+        <div class="about-text">
+            <h3>I'm Ranjith Ramu</h3>
+            <h4 class="role">Data Analyst & Data Scientist</h4>
+            <p>
+                As a passionate fresher in the world of Data Analysis and Data Science, I thrive on turning complex
+                datasets into concise, actionable insights. My journey thus far has been driven by a deep curiosity
+                about how data shapes the world around us.
+            </p>
+            <p>
+                From building predictive models to visualizing trends, I am constantly learning and implementing new
+                algorithms. I am eager to join a dynamic team where I can apply my skills, learn from experts, and
+                contribute to data-driven decision making.
+            </p>
+
+            <div class="about-stats">
+                <div class="stat-box">
+                    <span class="stat-number">Fresher</span>
+                    <span class="stat-text">Experience</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-text">Projects</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-text">Certifications</span>
+                </div>
+            </div>
+
+            <a href="{{ url_for('static', filename='document/RANJITHRAMU DATA SCIENCE RESUME.pdf') }}" download
+                class="btn btn-primary mt-4">
+                <i class="fas fa-file-pdf"></i> Download Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

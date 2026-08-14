@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero container">
+    <div class="hero-content">
+        <h3 class="greeting">fresher</h3>
+        <h1 class="headline">hello it's me <br><span class="name-gradient">Ranjith Ramu</span></h1>
+        <h2 class="sub-headline">in data analysis and data science</h2>
+        <p class="hero-desc">
+            Passionate about transforming raw data into meaningful insights and building predictive models to solve complex problems.
+        </p>
+        
+        <div class="hero-cta">
+            <a href="{{ url_for('static', filename='document/RANJITHRAMU DATA SCIENCE RESUME.pdf') }}" download class="btn btn-primary" id="download-cv">
+                <i class="fas fa-download"></i> Download CV
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline">Let's Talk</a>
+        </div>
+
+        <div class="social-icons-hero">
+            <a href="https://x.com/Ranjith37045928" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/ranjithramu63" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ranjith-r-6025a6216" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- Right Side: 3D Model & Profile Image -->
+    <div class="hero-visuals">
+        <!-- Profile Image Context -->
+        <div class="profile-img-container">
+            <img src="{{ url_for('static', filename='RANJITH.R.jpg') }}" alt="Ranjith Ramu Profile" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/1e293b/3b82f6?text=RR'">
+            <div class="glow-effect"></div>
+        </div>
+        <!-- 3D Model Container -->
+        <div class="model-container" id="3d-model-wrapper">
+            <!-- Three.js canvas will be injected here -->
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<!-- Include Three.js via CDN for the right-side computer design 3D model -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+    // Simple 3D Computer/Data Model Rendering on the Right Side
+    const init3DModel = () => {
+        const container = document.getElementById('3d-model-wrapper');
+        if (!container) return;
+        
+        container.innerHTML = ''; // Clear existing
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+        
+        // Add lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0x3b82f6, 1);
+        directionalLight.position.set(5, 10, 7);
+        scene.add(directionalLight);
+
+        const pointLight = new THREE.PointLight(0xff0055, 1, 100);
+        pointLight.position.set(-5, -5, 5);
+        scene.add(pointLight);
+        
+        // Create an abstract Tech/Data "Computer Structure" Model (Nodes & Links)
+        const particles = new THREE.Group();
+        scene.add(particles);
+        
+        const geometry = new THREE.TorusKnotGeometry(1.5, 0.4, 100, 16);
+        const material = new THREE.MeshPhysicalMaterial({ 
+            color: 0x3b82f6,
+            metalness: 0.9,
+            roughness: 0.1,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.7
+        });
+        
+        const torusKnot = new THREE.Mesh(geometry, material);
+        particles.add(torusKnot);
+
+        // Add some floating data points around the main object
+        const dotGeo = new THREE.BufferGeometry();
+        const dotCount = 200;
+        const posArray = new Float32Array(dotCount * 3);
+        
+        for(let i = 0; i < dotCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15;
+        }
+        
+        dotGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const dotMat = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0x00ffcc
+        });
+        
+        const dotMesh = new THREE.Points(dotGeo, dotMat);
+        scene.add(dotMesh);
+        
+        camera.position.z = 5;
+        
+        // Controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 2.0;
+        
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.005;
+            torusKnot.rotation.y += 0.005;
+            dotMesh.rotation.y -= 0.001;
+            controls.update();
+            renderer.render(scene, camera);
+        };
+        
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            if (container.clientWidth > 0) {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
+    };
+
+    // Initialize after a short delay to ensure DOM is ready and styled
+    setTimeout(init3DModel, 300);
+</script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="projects-page container">
+    <div class="section-header text-center">
+        <h2>Featured <span class="highlight">Projects</span></h2>
+        <div class="underline"></div>
+        <p class="section-subtitle">A selection of my recent data science and analytics projects.</p>
+    </div>
+
+    <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                    alt="MCA Mini Project">
+            </div>
+            <div class="project-info">
+                <div class="project-tags">
+                    <span>MCA</span>
+                    <span>Analytics</span>
+                </div>
+                <h3>MCA Mini Project</h3>
+                <p>Final implementation and report for my comprehensive MCA Mini Project.</p>
+                <a href="{{ url_for('static', filename='document/ranjith_project_mca_mini_project[1] finall.pdf') }}"
+                    target="_blank" class="btn-text">View Document <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="{{ url_for('static', filename='avatar_sign_language_1774375416960.png') }}"
+                    alt="3D Avatar Synthesis">
+            </div>
+            <div class="project-info">
+                <div class="project-tags">
+                    <span>3D Synthesis</span>
+                    <span>AI / ISL</span>
+                </div>
+                <h3>Real Time 3D Avatar for ISL</h3>
+                <p>Translating Indian Sign Language (ISL) gestures to 3D avatar animations in real-time.</p>
+                <a href="{{ url_for('static', filename='document/Real Time 3D Avatar Synthesis for Indian Sign Language.pdf') }}"
+                    target="_blank" class="btn-text">View Document <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80"
+                    alt="Project 3">
+            </div>
+            <div class="project-info">
+                <div class="project-tags">
+                    <span>Data Visualization</span>
+                    <span>Dashboard</span>
+                </div>
+                <h3>Financial Dashboard</h3>
+                <p>Created an interactive dashboard using Python and Plotly to visualize key financial metrics in
+                    real-time.</p>
+                <a href="#" class="btn-text">View Project <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Project 4: GitHub Repositories -->
+        <div class="project-card">
+            <div class="project-img">
+                <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=800&q=80"
+                    alt="GitHub Repositories">
+            </div>
+            <div class="project-info">
+                <div class="project-tags">
+                    <span>GitHub</span>
+                    <span>Open Source</span>
+                </div>
+                <h3>My GitHub Repositories</h3>
+                <p>Explore my latest code, projects, and open-source contributions on my GitHub profile.</p>
+                <a href="https://github.com/ranjithramu63" target="_blank" class="btn-text">View Repositories <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
